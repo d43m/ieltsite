@@ -7,6 +7,9 @@ class Country(models.Model):
     currency = models.CharField(max_length=10)
     last_seen = models.DateTimeField(null=True)
 
+    class Meta:
+        verbose_name_plural = "countries"
+
     def __str__(self):
         return self.name
 
@@ -17,6 +20,9 @@ class City(models.Model):
     venue = models.CharField(null=True, max_length=300)
     cid = models.CharField(max_length=100)  # city name at council site #
     last_seen = models.DateTimeField(null=True)
+
+    class Meta:
+        verbose_name_plural = "cities"
 
     def __str__(self):
         return self.name
