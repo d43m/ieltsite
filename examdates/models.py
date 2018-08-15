@@ -7,12 +7,20 @@ class Country(models.Model):
     currency = models.CharField(max_length=10)
     last_seen = models.DateTimeField(null=True)
 
+    def __str__(self):
+        return self.name
+
+
 class City(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     venue = models.CharField(null=True, max_length=300)
     cid = models.CharField(max_length=100)  # city name at council site #
     last_seen = models.DateTimeField(null=True)
+
+    def __str__(self):
+        return self.name
+
 
 class Date(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
@@ -23,4 +31,6 @@ class Date(models.Model):
     last_seen = models.DateTimeField(null=True)
     available = models.IntegerField()
 
-
+    def __str__(self):
+        return "{0.country.name:s} / {0.city.name:s} {0.date:%Y-%m-%d}".format(
+            self)
